@@ -246,7 +246,7 @@
             <button class="button"
                     onclick="render2()">render</button>
         </div>
-        <small>find "/Volumes/MyPassport/#Photo_cloud/2021/2021.03" -type f -regex '.*[0-9]\{2\}\/[0-9]\{4\}-.*' > listOfFiles.list</small>
+        <small>find {PATH} -type f -regex '.*[0-9]\{2\}\/[0-9]\{4\}-.*' > listOfFiles.list</small>
         <button class="button menu-icon-close"
                 onClick="toggleMenu()">X</button>
     </div>
@@ -256,66 +256,6 @@
          class="calendar">
     </div>
 <script>
-    const testData = [
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 00.12.11.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.28.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.29.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.37.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.38.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.42.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.52.43.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.53.02.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.53.04.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.53.06.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.53.12-1.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 15.53.12.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 18.40.43.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 18.41.00.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.20/2021-03-20 18.41.02.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.03/2021-03-03 19.17.18.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.03/2021-03-03 19.17.25.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.09/2021-03-09 22.46.26.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.09/2021-03-09 22.46.36.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.09/2021-03-09 22.46.55.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.09/2021-03-09 22.47.06.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.09/2021-03-09 23.25.49.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.12/2021-03-12 22.06.30.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.12/2021-03-12 22.06.39.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.12/2021-03-12 22.06.41.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.15/2021-03-15 17.59.13.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 16.12.01.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 17.47.28.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 19.58.15.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 19.58.42.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 19.58.59.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 19.59.16.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 19.59.43.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 20.00.01.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 20.00.28.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 20.00.43.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 20.01.21.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 21.12.02.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.18/2021-03-18 21.12.30.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.19/2021-03-19 01.30.52.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.19/2021-03-19 17.11.42.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.19/2021-03-19 17.15.23.dng',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.21/2021-03-21 14.18.36.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.21/2021-03-21 17.20.14.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.21/2021-03-21 17.20.16.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.21/2021-03-21 17.20.17.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.21/2021-03-21 17.20.18.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.27/2021-03-27 12.02.40.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.27/2021-03-27 12.02.46.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.27/2021-03-27 12.30.22.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.27/2021-03-27 15.57.16.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.27/2021-03-28 10.59.17.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.29/2021-03-29 20.44.08.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.29/2021-03-29 20.44.15.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.29/2021-03-29 20.44.23.jpg',
-        '/Volumes/MyPassport/%23Photo_cloud/2021/2021.03/2021.03.01/2021-03-01 19.50.44.jpg',
-    ];
-    document.querySelector('textarea').value = testData.toString();
-
     document.querySelector('#files').addEventListener('change', fileUploads);
     document.querySelector('#switch').addEventListener('change', toggleSources);
 
@@ -433,7 +373,6 @@
         const currentYear = new Date().getFullYear();
         const userPickMonth = document.querySelector('#calendar-month').value;
         const currentMonth = userPickMonth ? userPickMonth - 1 : Object.keys(arrangedData)[0] - 1;
-        console.log(currentMonth);
 
         // title
         const heading = document.createElement('h1');
@@ -441,13 +380,9 @@
         document.querySelector('#title').appendChild(heading);
 
         const currentDate = new Date(+currentYear, +currentMonth + 1, 0);
-        console.log(currentDate);
         const daysInCurrentMonth = currentDate.getDate();
-        console.log(daysInCurrentMonth);
         const numberOfFirstDayInMonth = new Date(+currentYear, +currentMonth, 1).getDay();
-        console.log(numberOfFirstDayInMonth);
         const numberOfLastDayInMonth = new Date(+currentYear, +currentMonth, daysInCurrentMonth).getDay();
-        console.log(numberOfLastDayInMonth);
 
         addCalendarShiftDay(numberOfFirstDayInMonth - 1);
 
