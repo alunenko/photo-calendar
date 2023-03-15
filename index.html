@@ -255,6 +255,45 @@
     <div id="calendar"
          class="calendar">
     </div>
+<!--<script src="https://apis.google.com/js/api.js"></script>-->
+<!--<script>-->
+<!--    function start() {-->
+<!--        // 2. Initialize the JavaScript client library.-->
+<!--        gapi.client.init({-->
+<!--            'apiKey': 'AIzaSyDgx2xUoNaApYS8wwf1SkRfQzzyNKJqKpY',-->
+<!--            // Your API key will be automatically added to the Discovery Document URLs.-->
+<!--            'discoveryDocs': ['https://photoslibrary.googleapis.com/$discovery/rest'],-->
+<!--            // clientId and scope are optional if auth is not required.-->
+<!--            'clientId': '466890354135-0kb1l2km71l1vibjpe9fvth5k7ab2rm8.apps.googleusercontent.com',-->
+<!--            'scope': 'photoslibrary',-->
+<!--        }).then(function() {-->
+<!--            // 3. Initialize and make the API request.-->
+<!--            return gapi.client.request({-->
+<!--                'path': 'https://photoslibrary.googleapis.com/v1/mediaItems:search',-->
+<!--                'method': 'GET',-->
+<!--                'body': {-->
+<!--                    "filters": {-->
+<!--                        "dateFilter": {-->
+<!--                            "dates": [-->
+<!--                                {-->
+<!--                                    "day": 1,-->
+<!--                                    "month": 1,-->
+<!--                                    "year": 0-->
+<!--                                }-->
+<!--                            ]-->
+<!--                        }-->
+<!--                    }-->
+<!--                }-->
+<!--            })-->
+<!--        }).then(function(response) {-->
+<!--            console.log(response.result);-->
+<!--        }, function(reason) {-->
+<!--            console.log('Error: ' + reason.result.error.message);-->
+<!--        });-->
+<!--    };-->
+<!--    // 1. Load the JavaScript client library.-->
+<!--    gapi.load('client', start);-->
+<!--</script>-->
 <script>
     document.querySelector('#files').addEventListener('change', fileUploads);
     document.querySelector('#switch').addEventListener('change', toggleSources);
@@ -306,11 +345,25 @@
         document.querySelector("#preview-image-container").appendChild(imgPreview);
     }
 
+    function fnRegex() {
+
+    }
+
     function arrangeInputData(uploadedFileData, fileSource) {
-        let regex = /(\d{4})-(\d{2})-(\d{2})/gm;
+        let regex = [
+            /(\d{4})-(\d{2})-(\d{2})/gm,
+            /(\d{4})(\d{2})(\d{2})/gm
+        ];
         let fileName = uploadedFileData.name || fileSource;
-        let m = regex.exec(fileName);
-        // console.log(m);
+        let m = null;
+        regex.forEach((regexCase) => {
+            let result = regexCase.exec(fileName);
+
+            if(result) {
+                m = result;
+            }
+        });
+        console.log(m);
 
         if(m !== null) {
             if (Object.keys(arrangedData).includes(m[2])) {
